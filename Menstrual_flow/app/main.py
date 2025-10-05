@@ -5,11 +5,6 @@ from app.api import feedback
 from app.database import SessionLocal
 from app.storage.model import Feedback
 from app.api import ml
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
-import os
-
-
 
 
 app = FastAPI(
@@ -17,13 +12,6 @@ app = FastAPI(
     version="0.1.0",
     description="API for tracking menstrual flow"
 )
-
-app.mount("/static", StaticFiles(directory="frontend"), name="static")
-
-# Route for index.html
-@app.get("/")
-def read_index():
-    return FileResponse(os.path.join("frontend", "index.html"))
 
 
 # Enable CORS for local development and file:// origins
@@ -70,3 +58,4 @@ async def startup_event():
             db.close()
         except Exception:
             pass
+
