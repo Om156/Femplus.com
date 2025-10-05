@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FemPlus Frontend</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="main.js"></script>
+    <div class="container">
+      <header class="header">
+        <div class="brand">
+          <div class="logo">FP</div>
+          <div class="name">
+            <h1>FEMPLUS</h1>
+            <small>Menstrual diagnostics reimagined</small>
+          </div>
+        </div>
+
+        <nav class="tabbar">
+          <button
+            class="tab active"
+            data-target="home-section"
+            data-label="Home"
+          >
+            🏠
+          </button>
+          <button class="tab" data-target="signup-section" data-label="SignUp">
+            📝
+          </button>
+          <button class="tab" data-target="login-section" data-label="Login">
+            🔑
+          </button>
+          <button
+            class="tab"
+            data-target="reading-section"
+            data-label="add_readings"
+          >
+            📊
+          </button>
+          <button
+            class="tab"
+            data-target="analysis-section"
+            data-label="Analysis"
+          >
+            📈
+          </button>
+          <button
+            class="tab"
+            data-target="health-section"
+            data-label="Health & Wellness"
+          >
+            💚
+          </button>
+          <button class="tab" data-target="shop-section" data-label="Shop">
+            🛒
+          </button>
+          <button
+            class="tab"
+            data-target="features-section"
+            data-label="Features"
+          >
+            ⭐
+          </button>
+          <button class="tab" data-target="labs-section" data-label="Labs">
+            🧪
+          </button>
+          <a class="cta" id="cta-consult">👩‍⚕️</a>
+          <span class="tab-indicator" id="tab-indicator"></span>
+          <div class="profile hidden" id="profile">
+            <button class="profile-btn" id="profile-btn">👤</button>
+            <div class="profile-menu" id="profile-menu">
+              <a href="#" id="menu-profile">Profile</a>
+              <a href="#" id="menu-feedback">Feedback</a>
+              <a href="#" id="menu-history">Past Readings</a>
+              <a href="#" id="menu-settings">Settings</a>
+              <a href="#" id="menu-help">Help</a>
+              <a href="#" id="menu-refer">Refer a Friend</a>
+              <a href="#" id="menu-support">Support</a>
+              <a href="#" id="menu-contact">Contact Us</a>
+              <a href="#" id="menu-about">About Us</a>
+              <button id="logout-btn">Logout</button>
+              <button id="delete-account-btn" class="warn">
+                Delete Account Permanently
+              </button>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div id="profile-backdrop" class="backdrop hidden"></div>
+      <aside
+        id="profile-drawer"
+        class="profile-drawer hidden"
+        aria-hidden="true"
+      >
+        <div class="drawer-header">
+          <strong>Account</strong>
+          <button id="drawer-close" class="mini" aria-label="Close">×</button>
+        </div>
+        <nav class="drawer-menu">
+          <a href="#" id="d-menu-profile">Profile</a>
+          <a href="#" id="d-menu-premium">Become Premium</a>
+          <a href="#" id="d-menu-feedback">Feedback</a>
+          <a href="#" id="d-menu-history">Past Readings</a>
+          <a href="#" id="d-menu-settings">Settings</a>
+          <a href="#" id="d-menu-help">Help</a>
+          <a href="#" id="d-menu-refer">Refer a Friend</a>
+          <a href="#" id="d-menu-support">Support</a>
+          <a href="#" id="d-menu-contact">Contact Us</a>
+          <a href="#" id="d-menu-about">About Us</a>
+          <button id="d-logout-btn">Logout</button>
+          <button id="d-delete-account-btn" class="warn">
+            Delete Account Permanently
+          </button>
+        </nav>
+      </aside>
+
+      <section id="home-section" class="card view">
+        <div id="welcome-section" class="welcome-section">
+          <div class="hero">
+            <div>
+              <h2>Welcome to FEMPLUS</h2>
+              <p>
+                Turn periods into powerful health insights. Analyze biomarkers
+                from menstrual blood to detect PCOS, endometriosis, infections,
+                anemia, metabolic issues, and cancer risks — right at home.
+              </p>
+              <div class="auth-options">
+                <button id="btn-new-user" class="primary">I'm New Here</button>
+                <button id="btn-existing-user" class="secondary">
+                  I Have an Account
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="awareness grid two">
+            <div>
+              <h3>Menstrual health matters</h3>
+              <p>
+                Understanding your cycle can reveal insights about anemia,
+                hormonal balance, inflammation, fertility, and more. Early
+                detection and continuous monitoring help prevent complications
+                and keep you in control of your health.
+              </p>
+              <p>
+                FEMPLUS combines biosensors, AI, and telehealth to deliver
+                research-backed insights with privacy-first design.
+              </p>
+            </div>
+            <div>
+              <!-- <div class="illustration"></div> -->
+              <div>
+                <h4>Track Your Cycle</h4>
+                <p>Log your symptoms and get personalized insights.</p>
+              </div>
+              <img
+                src="./image/female.png"
+                alt="Menstrual Health Illustration"
+                width="300"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="dashboard-section" class="dashboard-section hidden">
+          <div class="hero">
+            <div>
+              <h2>Welcome back!</h2>
+              <p>
+                Continue tracking your menstrual health and get personalized
+                insights.
+              </p>
+              <div class="actions">
+                <button id="btn-consult">Book Teleconsult</button>
+                <button class="ghost" id="btn-see-features">
+                  See Features
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pair-card">
+          <h3>Pair FemPlus Device</h3>
+          <p>Connect your at-home flow analyzer to sync readings securely.</p>
+          <div class="device-status">Not Connected</div>
+          <button id="pair-home-btn" class="mini">Pair Device</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Cycle Day</div>
+            <div class="value">Day 3</div>
+            <small>Next period in 25 days</small>
+          </div>
+          <div class="stat">
+            <div class="label">Flow</div>
+            <div class="value warn">Moderate</div>
+            <small>Volume: 160 ml</small>
+          </div>
+          <div class="stat">
+            <div class="label">Anemia</div>
+            <div class="value ok">Normal</div>
+            <small>Hb: 12.6 g/dL</small>
+          </div>
+        </div>
+
+        <h3 id="features-title">Key Features</h3>
+        <div class="features" id="features-home"></div>
+      </section>
+
+      <section id="features-section" class="card hidden view">
+        <h2>All Features</h2>
+        <h3>Free</h3>
+        <div class="features" id="features-grid-free"></div>
+        <h3>Premium</h3>
+        <div class="features" id="features-grid-premium"></div>
+      </section>
+
+      <section id="labs-section" class="card hidden view">
+        <h2>Book Lab Tests</h2>
+        <div class="features" id="labs-grid"></div>
+      </section>
+
+      <section id="shop-section" class="card hidden view">
+        <h2>Shop Menstrual Essentials</h2>
+        <div class="features" id="shop-grid"></div>
+      </section>
+
+      <section id="about-section" class="card home-only">
+        <h2>About FEMPLUS</h2>
+        <p>
+          We are building accessible menstrual health diagnostics and care,
+          combining biosensors, AI, and telehealth. Our mission is to empower
+          people with actionable, privacy-first health insights.
+        </p>
+        <div class="grid two">
+          <div>
+            <h3>Contact Us</h3>
+            <p>Email: support@femplus.health</p>
+            <p>Phone: +91 98765 43210</p>
+          </div>
+          <div>
+            <h3>Locations</h3>
+            <p>Bengaluru • Delhi NCR • Mumbai • Pune</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer home-only">
+        <div class="footer-cols">
+          <div>
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+          </div>
+          <div>
+            <h4>Connect</h4>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">YouTube</a>
+          </div>
+          <div>
+            <h4>Get the App</h4>
+            <button class="mini">iOS</button>
+            <button class="mini">Android</button>
+          </div>
+        </div>
+        <div class="copyright">© 2025 FEMPLUS. All rights reserved.</div>
+      </footer>
+
+      <section id="signup-section" class="card hidden view">
+        <h2>Create your account</h2>
+
+        <div class="social-login">
+          <p class="social-text">Sign up with</p>
+          <div class="social-buttons">
+            <button class="social-btn google" id="google-signup">
+              <span class="social-icon">🔍</span> Google
+            </button>
+            <button class="social-btn facebook" id="facebook-signup">
+              <span class="social-icon">📘</span> Facebook
+            </button>
+            <button class="social-btn instagram" id="instagram-signup">
+              <span class="social-icon">📷</span> Instagram
+            </button>
+          </div>
+          <div class="divider">
+            <span>or</span>
+          </div>
+        </div>
+
+        <form id="signup-form">
+          <div class="grid two">
+            <input
+              id="signup-email"
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              id="signup-password"
+              type="password"
+              placeholder="Create password"
+              required
+            />
+            <input
+              id="signup-password2"
+              type="password"
+              placeholder="Confirm password"
+              required
+            />
+          </div>
+          <label>
+            <input type="checkbox" id="terms-check" required /> I agree to the
+            <a href="#" id="open-terms">Terms & Conditions</a>
+          </label>
+          <div class="actions">
+            <button type="submit" id="signup-btn">Sign up with Email</button>
+          </div>
+        </form>
+        <div id="signup-result" class="result"></div>
+      </section>
+
+      <section id="login-section" class="card hidden view">
+        <h2>Log in</h2>
+        <div class="grid two">
+          <input id="login-email" type="email" placeholder="email" />
+          <input id="login-password" type="password" placeholder="password" />
+        </div>
+        <button id="login-btn">Login</button>
+        <div id="login-result" class="result"></div>
+        <p class="muted">
+          New user? <a href="#" id="go-signup">Sign up here</a>
+        </p>
+      </section>
+
+      <section id="reading-section" class="card hidden view">
+        <h2>Add Single Reading</h2>
+        <div class="source-tabs">
+          <button class="source-tab active" data-source="manual">
+            Manual Entry
+          </button>
+          <button class="source-tab" data-source="device">From Device</button>
+          <button class="source-tab" data-source="image">From Image</button>
+          <button class="source-tab" data-source="gas-sensor">
+            Gas Sensor (ThingSpeak)
+          </button>
+        </div>
+        <div id="source-manual">
+          <div class="grid two">
+            <input id="reading-email" type="email" placeholder="user email" />
+            <input
+              id="flow-ml"
+              type="number"
+              step="0.1"
+              placeholder="flow_ml"
+            />
+            <input id="hb" type="number" step="0.1" placeholder="hb" />
+            <input id="ph" type="number" step="0.1" placeholder="ph" />
+            <input id="crp" type="number" step="0.1" placeholder="crp" />
+            <input
+              id="hba1c"
+              type="number"
+              step="0.1"
+              placeholder="hba1c_ratio"
+            />
+            <input
+              id="clots"
+              type="number"
+              step="0.1"
+              placeholder="clots_score"
+            />
+            <input
+              id="cycle-id"
+              type="text"
+              placeholder="cycle_id (optional)"
+            />
+            <input
+              id="fsh"
+              type="number"
+              step="0.1"
+              placeholder="fsh_level (optional)"
+            />
+            <input
+              id="lh"
+              type="number"
+              step="0.1"
+              placeholder="lh_level (optional)"
+            />
+            <input
+              id="amh"
+              type="number"
+              step="0.1"
+              placeholder="amh_level (optional)"
+            />
+            <input
+              id="tsh"
+              type="number"
+              step="0.1"
+              placeholder="tsh_level (optional)"
+            />
+            <input
+              id="prolactin"
+              type="number"
+              step="0.1"
+              placeholder="prolactin_level (optional)"
+            />
+            <input
+              id="esr"
+              type="number"
+              step="0.1"
+              placeholder="ESR (mm/hr)"
+            />
+            <input
+              id="leukocyte_count"
+              type="number"
+              step="0.1"
+              placeholder="Leukocyte Count (/µL)"
+            />
+            <input
+              id="vaginal_ph"
+              type="number"
+              step="0.1"
+              placeholder="Vaginal pH"
+            />
+            <input
+              id="ca125"
+              type="number"
+              step="0.1"
+              placeholder="CA-125 (U/mL)"
+            />
+            <input
+              id="estrogen"
+              type="number"
+              step="0.1"
+              placeholder="Estrogen (pg/mL)"
+            />
+            <input
+              id="progesterone"
+              type="number"
+              step="0.1"
+              placeholder="Progesterone (ng/mL)"
+            />
+            <input
+              id="androgens"
+              type="number"
+              step="0.1"
+              placeholder="Testosterone (ng/dL)"
+            />
+            <input
+              id="blood_glucose"
+              type="number"
+              step="0.1"
+              placeholder="Blood Glucose (mg/dL)"
+            />
+            <input
+              id="wbc_count"
+              type="number"
+              step="0.1"
+              placeholder="WBC Count (/µL)"
+            />
+            <input
+              id="pain_score"
+              type="number"
+              step="0.1"
+              min="0"
+              max="10"
+              placeholder="Pain Score (0-10)"
+            />
+            <input
+              id="weight_gain"
+              type="number"
+              step="0.1"
+              placeholder="Weight Gain (kg)"
+            />
+            <input
+              id="acne_severity"
+              type="number"
+              step="0.1"
+              min="0"
+              max="5"
+              placeholder="Acne Severity (0-5)"
+            />
+            <input
+              id="insulin_resistance"
+              type="number"
+              step="0.1"
+              placeholder="HOMA-IR Score"
+            />
+            <input
+              id="fever"
+              type="number"
+              step="0.1"
+              placeholder="Body Temperature (°C)"
+            />
+            <input
+              id="tenderness"
+              type="number"
+              step="1"
+              min="0"
+              max="3"
+              placeholder="Tenderness Score (0-3)"
+            />
+            <input
+              id="pain_during_intercourse"
+              type="number"
+              step="1"
+              min="0"
+              max="1"
+              placeholder="Pain during intercourse (0/1)"
+            />
+            <input
+              id="bloating"
+              type="number"
+              step="1"
+              min="0"
+              max="1"
+              placeholder="Bloating (0/1)"
+            />
+            <input
+              id="weight_loss"
+              type="number"
+              step="0.1"
+              placeholder="Weight Loss (kg)"
+            />
+            <input
+              id="appetite_loss"
+              type="number"
+              step="1"
+              min="0"
+              max="1"
+              placeholder="Appetite Loss (0/1)"
+            />
+          </div>
+        </div>
+
+        <div id="source-device" class="hidden">
+          <div class="pair-card">
+            <h3>Pair FemPlus Device</h3>
+            <p>Connect and fetch latest sensor readings.</p>
+            <div class="device-status">Not Connected</div>
+            <button id="pair-reading-btn" class="mini">Pair Device</button>
+            <button id="fetch-sensor-btn" class="mini" disabled>
+              Fetch Sensor Data
+            </button>
+          </div>
+        </div>
+
+        <div id="source-image" class="hidden">
+          <label
+            >Upload sample image
+            <input id="reading-image" type="file" accept="image/*" />
+          </label>
+        </div>
+
+        <div id="source-gas-sensor" class="hidden">
+          <div class="gas-sensor-card">
+            <h3>🌬️ Gas Sensor Data (ThingSpeak)</h3>
+            <p>
+              Fetch real-time air quality data from your connected gas sensors.
+            </p>
+            <div class="gas-sensor-controls">
+              <button id="fetch-gas-data-btn" class="primary">
+                Fetch Latest Gas Data
+              </button>
+              <button id="add-gas-reading-btn" class="secondary" disabled>
+                Add as Reading
+              </button>
+            </div>
+            <div id="gas-sensor-status" class="device-status">
+              Not Connected
+            </div>
+          </div>
+
+          <div id="gas-sensor-display" class="gas-sensor-display hidden">
+            <h4>Current Air Quality Data</h4>
+            <div class="gas-sensor-grid">
+              <div class="gas-sensor-item">
+                <span class="gas-label">Air Quality Index</span>
+                <span class="gas-value" id="aqi-value">--</span>
+                <span class="gas-category" id="aqi-category">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">CO₂ (ppm)</span>
+                <span class="gas-value" id="co2-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">CO (ppm)</span>
+                <span class="gas-value" id="co-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">NO₂ (ppb)</span>
+                <span class="gas-value" id="no2-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">O₃ (ppb)</span>
+                <span class="gas-value" id="o3-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">PM2.5 (μg/m³)</span>
+                <span class="gas-value" id="pm25-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">PM10 (μg/m³)</span>
+                <span class="gas-value" id="pm10-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Temperature (°C)</span>
+                <span class="gas-value" id="temp-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Humidity (%)</span>
+                <span class="gas-value" id="humidity-value">--</span>
+              </div>
+            </div>
+
+            <!-- TCS230 Color Sensor Data -->
+            <h4 style="margin-top: 20px; color: #4caf50">
+              🎨 Color Sensor Data (TCS230)
+            </h4>
+            <div class="gas-sensor-grid">
+              <div class="gas-sensor-item">
+                <span class="gas-label">Red Intensity</span>
+                <span class="gas-value" id="color-red-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Green Intensity</span>
+                <span class="gas-value" id="color-green-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Blue Intensity</span>
+                <span class="gas-value" id="color-blue-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Clear Light</span>
+                <span class="gas-value" id="color-clear-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Hue (°)</span>
+                <span class="gas-value" id="color-hue-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Saturation (%)</span>
+                <span class="gas-value" id="color-saturation-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Brightness (%)</span>
+                <span class="gas-value" id="color-brightness-value">--</span>
+              </div>
+              <div class="gas-sensor-item">
+                <span class="gas-label">Color Category</span>
+                <span class="gas-value" id="color-category-value">--</span>
+              </div>
+            </div>
+            <div class="gas-sensor-info">
+              <p id="gas-sensor-timestamp">Last updated: --</p>
+              <p id="gas-sensor-health-concern">Health concern: --</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="add-reading-btn">Save Reading (Login required)</button>
+          <button id="predict-from-reading" class="ghost">Get Output</button>
+        </div>
+        <div id="add-reading-result" class="result"></div>
+        <div id="reading-predict-cards" class="result"></div>
+      </section>
+
+      <section id="analysis-section" class="card hidden view">
+        <h2>Analysis</h2>
+        <input id="analysis-email" type="email" placeholder="user email" />
+        <button id="fetch-analysis-btn">Fetch Analysis</button>
+        <pre id="analysis-result" class="result"></pre>
+      </section>
+
+      <section id="health-section" class="card hidden view">
+        <h2>💚 Health & Wellness</h2>
+
+        <!-- Health Tabs -->
+        <div class="health-tabs">
+          <button class="health-tab active" data-health-target="diet-tracking">
+            🥗 Diet Tracking
+          </button>
+          <button class="health-tab" data-health-target="morning-routine">
+            🌅 Morning Routine
+          </button>
+          <button class="health-tab" data-health-target="night-routine">
+            🌙 Night Routine
+          </button>
+          <button class="health-tab" data-health-target="exercises">
+            💪 Exercises
+          </button>
+        </div>
+
+        <!-- Diet Tracking Section -->
+        <div id="diet-tracking" class="health-content active">
+          <h3>🥗 Daily Nutrition Tracker</h3>
+          <div class="diet-input">
+            <input
+              id="food-item"
+              type="text"
+              placeholder="Food item (e.g., Spinach, 100g)"
+            />
+            <input id="calories" type="number" placeholder="Calories" />
+            <button id="add-food-btn">Add Food</button>
+          </div>
+          <div class="nutrition-summary">
+            <div class="nutrient-card">
+              <span class="nutrient-label">Calories</span>
+              <span class="nutrient-value" id="total-calories">0</span>
+            </div>
+            <div class="nutrient-card">
+              <span class="nutrient-label">Iron</span>
+              <span class="nutrient-value" id="total-iron">0mg</span>
+            </div>
+            <div class="nutrient-card">
+              <span class="nutrient-label">Protein</span>
+              <span class="nutrient-value" id="total-protein">0g</span>
+            </div>
+            <div class="nutrient-card">
+              <span class="nutrient-label">Fiber</span>
+              <span class="nutrient-value" id="total-fiber">0g</span>
+            </div>
+          </div>
+          <div class="food-log" id="food-log">
+            <h4>Today's Food Log</h4>
+            <div class="food-items" id="food-items"></div>
+          </div>
+          <div class="diet-recommendations">
+            <h4>💡 Diet Recommendations</h4>
+            <div class="recommendation-card">
+              <strong>For Anemia:</strong> Include spinach, lentils, beetroot,
+              red meat
+            </div>
+            <div class="recommendation-card">
+              <strong>For PCOS:</strong> Low-carb, high-fiber, anti-inflammatory
+              foods
+            </div>
+            <div class="recommendation-card">
+              <strong>For Thyroid:</strong> Iodine-rich foods, avoid excessive
+              soy
+            </div>
+            <div class="recommendation-card">
+              <strong>For Diabetes:</strong> Complex carbs, lean proteins,
+              healthy fats
+            </div>
+          </div>
+        </div>
+
+        <!-- Morning Routine Section -->
+        <div id="morning-routine" class="health-content">
+          <h3>🌅 Morning Wellness Routine</h3>
+          <div class="routine-checklist">
+            <div class="routine-item">
+              <input type="checkbox" id="morning-water" />
+              <label for="morning-water">💧 Drink 1-2 glasses of water</label>
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="morning-stretch" />
+              <label for="morning-stretch"
+                >🤸 Light stretching (5-10 min)</label
+              >
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="morning-meditation" />
+              <label for="morning-meditation"
+                >🧘 Meditation or deep breathing (5 min)</label
+              >
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="morning-sunlight" />
+              <label for="morning-sunlight"
+                >☀️ Get natural sunlight exposure</label
+              >
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="morning-breakfast" />
+              <label for="morning-breakfast"
+                >🍳 Healthy breakfast within 2 hours</label
+              >
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="morning-vitamins" />
+              <label for="morning-vitamins"
+                >💊 Take prescribed vitamins/supplements</label
+              >
+            </div>
+          </div>
+          <div class="routine-tips">
+            <h4>💡 Morning Tips</h4>
+            <ul>
+              <li>Start with gratitude journaling</li>
+              <li>Set daily intentions</li>
+              <li>Avoid checking phone first thing</li>
+              <li>Prepare healthy snacks for the day</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Night Routine Section -->
+        <div id="night-routine" class="health-content">
+          <h3>🌙 Evening Wind-Down Routine</h3>
+          <div class="routine-checklist">
+            <div class="routine-item">
+              <input type="checkbox" id="night-digital-detox" />
+              <label for="night-digital-detox"
+                >📱 Digital detox 1 hour before bed</label
+              >
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="night-tea" />
+              <label for="night-tea">🍵 Herbal tea (chamomile, lavender)</label>
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="night-skincare" />
+              <label for="night-skincare">🧴 Evening skincare routine</label>
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="night-journal" />
+              <label for="night-journal"
+                >📝 Journal or reflect on the day</label
+              >
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="night-stretching" />
+              <label for="night-stretching">🤸 Gentle stretching or yoga</label>
+            </div>
+            <div class="routine-item">
+              <input type="checkbox" id="night-room-prep" />
+              <label for="night-room-prep"
+                >🛏️ Prepare bedroom for optimal sleep</label
+              >
+            </div>
+          </div>
+          <div class="sleep-tips">
+            <h4>😴 Sleep Optimization</h4>
+            <ul>
+              <li>Keep room cool (65-68°F)</li>
+              <li>Use blackout curtains</li>
+              <li>Limit caffeine after 2 PM</li>
+              <li>Consistent sleep schedule</li>
+              <li>No screens 1 hour before bed</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Exercises Section -->
+        <div id="exercises" class="health-content">
+          <h3>💪 Exercise & Movement</h3>
+
+          <!-- Disease-Specific Exercises -->
+          <div class="exercise-categories">
+            <h4>🎯 Disease-Specific Exercises</h4>
+
+            <div class="exercise-card">
+              <h5>🩸 For Anemia</h5>
+              <ul>
+                <li>
+                  <strong>Light Cardio:</strong> Walking, gentle cycling (20-30
+                  min)
+                </li>
+                <li>
+                  <strong>Breathing Exercises:</strong> Deep breathing to
+                  improve oxygen circulation
+                </li>
+                <li>
+                  <strong>Gentle Yoga:</strong> Restorative poses, avoid intense
+                  inversions
+                </li>
+                <li>
+                  <strong>Strength Training:</strong> Light weights, focus on
+                  form
+                </li>
+              </ul>
+            </div>
+
+            <div class="exercise-card">
+              <h5>🔄 For PCOS</h5>
+              <ul>
+                <li>
+                  <strong>HIIT Workouts:</strong> 15-20 min high-intensity
+                  intervals
+                </li>
+                <li>
+                  <strong>Strength Training:</strong> 3x per week, compound
+                  movements
+                </li>
+                <li>
+                  <strong>Yoga:</strong> Vinyasa flow, stress-reducing poses
+                </li>
+                <li>
+                  <strong>Cardio:</strong> 150 min moderate intensity per week
+                </li>
+              </ul>
+            </div>
+
+            <div class="exercise-card">
+              <h5>🦋 For Thyroid Issues</h5>
+              <ul>
+                <li>
+                  <strong>Low-Impact Cardio:</strong> Swimming, walking, cycling
+                </li>
+                <li>
+                  <strong>Yoga:</strong> Gentle flows, neck and shoulder
+                  stretches
+                </li>
+                <li>
+                  <strong>Strength Training:</strong> Moderate intensity, full
+                  body
+                </li>
+                <li>
+                  <strong>Breathing Exercises:</strong> Pranayama for energy
+                </li>
+              </ul>
+            </div>
+
+            <div class="exercise-card">
+              <h5>🍯 For Diabetes</h5>
+              <ul>
+                <li>
+                  <strong>Aerobic Exercise:</strong> 30 min daily, moderate
+                  intensity
+                </li>
+                <li><strong>Resistance Training:</strong> 2-3x per week</li>
+                <li><strong>Walking:</strong> 10,000 steps daily</li>
+                <li>
+                  <strong>Flexibility:</strong> Stretching, yoga for circulation
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- General Wellness Exercises -->
+          <div class="general-exercises">
+            <h4>🌟 General Wellness</h4>
+
+            <div class="exercise-card">
+              <h5>🧘 Yoga Poses for Women's Health</h5>
+              <ul>
+                <li><strong>Cat-Cow Stretch:</strong> Gentle spine mobility</li>
+                <li>
+                  <strong>Child's Pose:</strong> Relaxation and stress relief
+                </li>
+                <li>
+                  <strong>Hip Openers:</strong> Pigeon pose, butterfly stretch
+                </li>
+                <li>
+                  <strong>Pelvic Floor:</strong> Kegel exercises, bridge pose
+                </li>
+                <li>
+                  <strong>Forward Folds:</strong> Calming, menstrual relief
+                </li>
+              </ul>
+            </div>
+
+            <div class="exercise-card">
+              <h5>🏃‍♀️ Daily Movement</h5>
+              <ul>
+                <li>
+                  <strong>Morning Stretch:</strong> 10-minute full body routine
+                </li>
+                <li>
+                  <strong>Desk Exercises:</strong> Neck rolls, shoulder shrugs
+                </li>
+                <li>
+                  <strong>Evening Walk:</strong> 20-30 minute gentle stroll
+                </li>
+                <li><strong>Dance:</strong> Fun cardio, stress relief</li>
+                <li>
+                  <strong>Gardening:</strong> Light activity, nature connection
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Exercise Tracker -->
+          <div class="exercise-tracker">
+            <h4>📊 Today's Activity</h4>
+            <div class="activity-input">
+              <select id="exercise-type">
+                <option value="walking">Walking</option>
+                <option value="yoga">Yoga</option>
+                <option value="strength">Strength Training</option>
+                <option value="cardio">Cardio</option>
+                <option value="stretching">Stretching</option>
+                <option value="dance">Dance</option>
+              </select>
+              <input
+                id="exercise-duration"
+                type="number"
+                placeholder="Duration (minutes)"
+              />
+              <button id="log-exercise-btn">Log Exercise</button>
+            </div>
+            <div class="activity-summary">
+              <div class="activity-card">
+                <span class="activity-label">Total Time</span>
+                <span class="activity-value" id="total-exercise-time"
+                  >0 min</span
+                >
+              </div>
+              <div class="activity-card">
+                <span class="activity-label">Calories Burned</span>
+                <span class="activity-value" id="calories-burned">0</span>
+              </div>
+            </div>
+            <div class="exercise-log" id="exercise-log">
+              <h5>Today's Exercises</h5>
+              <div class="exercise-items" id="exercise-items"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile-section" class="card hidden view">
+        <h2>Your Profile</h2>
+        <div id="profile-content" class="grid two"></div>
+      </section>
+      <div id="toast-container"></div>
+      <div id="loader" class="loader hidden" style="display: none">
+        <div class="spinner"></div>
+      </div>
+      <button id="ai-fab" class="ai-fab" aria-label="Your Saheli">🤖</button>
+      <div id="ai-chat" class="ai-chat hidden" aria-hidden="true">
+        <div class="ai-chat-header">
+          Your Saheli
+          <button id="ai-close" class="mini" style="float: right">×</button>
+        </div>
+        <div id="ai-messages" class="ai-messages"></div>
+        <div class="ai-input">
+          <input
+            id="ai-text"
+            type="text"
+            placeholder="Ask me or say 'open features'"
+          />
+          <button id="ai-send" class="mini">Send</button>
+          <div id="ai-typing" class="ai-typing hidden">...</div>
+        </div>
+      </div>
+      <!-- Feedback modal -->
+      <div id="fb-backdrop" class="modal-backdrop hidden" aria-hidden="true">
+        <div
+          class="modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="fb-title"
+        >
+          <h3 id="fb-title">Share your feedback</h3>
+          <div class="fb-stars" id="fb-stars">
+            <button data-star="1">★</button>
+            <button data-star="2">★</button>
+            <button data-star="3">★</button>
+            <button data-star="4">★</button>
+            <button data-star="5">★</button>
+          </div>
+          <textarea
+            id="fb-comment"
+            rows="4"
+            placeholder="What can we improve? (optional)"
+          ></textarea>
+          <h4>Recent feedback</h4>
+          <div id="fb-list" class="feedback-list"></div>
+          <div class="grid two">
+            <button id="fb-cancel" class="secondary">Cancel</button>
+            <button id="fb-submit" class="primary">Submit</button>
+          </div>
+        </div>
+      </div>
+      <!--############# Premium purchase modal ############-->
+      <div id="premium-backdrop" class="modal-backdrop" aria-hidden="true">
+        <div
+          class="modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="premium-title"
+        >
+          <h3 id="premium-title">Go Premium</h3>
+          <p>
+            Unlock detailed biomarkers, PCOS/PCOD insights, endometriosis
+            markers, cancer risk signals, and doctor consultation.
+          </p>
+          <ul>
+            <li>Advanced disease risk insights</li>
+            <li>Doctor teleconsult booking</li>
+            <li>Priority support</li>
+          </ul>
+          <div class="actions">
+            <button id="premium-buy" class="btn-premium">Buy Premium</button>
+            <button id="premium-close" class="ghost">Not now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="main.js?v=2"></script>
+    <!--################ Google Calendar API #############-->
+    <script src="https://apis.google.com/js/api.js"></script>
+  </body>
+</html>

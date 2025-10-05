@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sensor Data Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .sensor-data {
+        background: #f5f5f5;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+      .error {
+        color: red;
+      }
+      .success {
+        color: green;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      pre {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🌬️ Sensor Data Test</h1>
+    <p>Test the ThingSpeak integration for both gas and color sensor data.</p>
+
+    <button onclick="testGasSensorAPI()">Test Gas Sensor API</button>
+    <button onclick="testColorSensorAPI()">Test Color Sensor API</button>
+    <button onclick="clearResults()">Clear Results</button>
+
+    <div id="results"></div>
+
+    <script>
+      async function testGasSensorAPI() {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML =
+          '<div class="sensor-data">Testing gas sensor API...</div>';
+
+        try {
+          const response = await fetch(
+            "http://localhost:8000/data/gas-sensor/latest"
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+
+          const data = await response.json();
+
+          if (!data || data === null) {
+            resultsDiv.innerHTML =
+              '<div class="sensor-data error">❌ No data received from API</div>';
+            return;
+          }
+
+          let html =
+            '<div class="sensor-data success">✅ Gas Sensor API Working!</div>';
+          html += "<h3>Gas Sensor Data:</h3>";
+          html += "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+
+          resultsDiv.innerHTML = html;
+        } catch (error) {
+          resultsDiv.innerHTML =
+            '<div class="sensor-data error">❌ Error: ' +
+            error.message +
+            "</div>";
+        }
+      }
+
+      async function testColorSensorAPI() {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML =
+          '<div class="sensor-data">Testing color sensor analysis...</div>';
+
+        try {
+          const response = await fetch(
+            "http://localhost:8000/data/gas-sensor/latest"
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+
+          const data = await response.json();
+
+          if (!data || data === null) {
+            resultsDiv.innerHTML =
+              '<div class="sensor-data error">❌ No data received from API</div>';
+            return;
+          }
+
+          let html =
+            '<div class="sensor-data success">✅ Color Sensor Analysis Working!</div>';
+
+          if (data.color_analysis) {
+            html += "<h3>Color Analysis:</h3>";
+            html +=
+              "<pre>" + JSON.stringify(data.color_analysis, null, 2) + "</pre>";
+          } else {
+            html +=
+              "<p>No color analysis data available (this is normal if no color sensor data is present)</p>";
+          }
+
+          resultsDiv.innerHTML = html;
+        } catch (error) {
+          resultsDiv.innerHTML =
+            '<div class="sensor-data error">❌ Error: ' +
+            error.message +
+            "</div>";
+        }
+      }
+
+      function clearResults() {
+        document.getElementById("results").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>

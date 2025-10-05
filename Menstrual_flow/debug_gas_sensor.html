@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debug Gas Sensor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .debug {
+        background: #f0f0f0;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+      .error {
+        color: red;
+      }
+      .success {
+        color: green;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .sensor-display {
+        background: #e8f4f8;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+      .hidden {
+        display: none;
+      }
+      .gas-sensor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        margin: 10px 0;
+      }
+      .gas-sensor-item {
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+      .gas-label {
+        font-weight: bold;
+        display: block;
+      }
+      .gas-value {
+        color: #007bff;
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🔍 Debug Gas Sensor</h1>
+
+    <button onclick="testAPI()">Test API Call</button>
+    <button onclick="testDisplay()">Test Display</button>
+    <button onclick="clearDebug()">Clear</button>
+
+    <div id="debug-output"></div>
+
+    <div id="gas-sensor-display" class="sensor-display hidden">
+      <h4>Current Air Quality Data</h4>
+      <div class="gas-sensor-grid">
+        <div class="gas-sensor-item">
+          <span class="gas-label">Air Quality Index</span>
+          <span class="gas-value" id="aqi-value">--</span>
+        </div>
+        <div class="gas-sensor-item">
+          <span class="gas-label">CO2 (ppm)</span>
+          <span class="gas-value" id="co2-value">--</span>
+        </div>
+        <div class="gas-sensor-item">
+          <span class="gas-label">Temperature (°C)</span>
+          <span class="gas-value" id="temp-value">--</span>
+        </div>
+        <div class="gas-sensor-item">
+          <span class="gas-label">Humidity (%)</span>
+          <span class="gas-value" id="humidity-value">--</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function log(message) {
+        const debugDiv = document.getElementById("debug-output");
+        debugDiv.innerHTML += '<div class="debug">' + message + "</div>";
+        console.log(message);
+      }
+
+      function clearDebug() {
+        document.getElementById("debug-output").innerHTML = "";
+      }
+
+      async function testAPI() {
+        log("Testing API call...");
+
+        try {
+          const response = await fetch(
+            "http://localhost:8000/data/gas-sensor/latest"
+          );
+          log("Response status: " + response.status);
+          log("Response ok: " + response.ok);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+
+          const data = await response.json();
+          log("Data received: " + JSON.stringify(data, null, 2));
+
+          if (data) {
+            displayGasSensorData(data);
+          }
+        } catch (error) {
+          log("ERROR: " + error.message);
+        }
+      }
+
+      function testDisplay() {
+        log("Testing display with mock data...");
+        const mockData = {
+          aqi: 45,
+          category: "Good",
+          co2_ppm: 41.0,
+          temperature_c: 22.5,
+          humidity_pct: 65.0,
+          timestamp: new Date().toISOString(),
+        };
+        displayGasSensorData(mockData);
+      }
+
+      function displayGasSensorData(data) {
+        log("Displaying gas sensor data...");
+
+        // Update individual sensor values
+        const sensors = {
+          "aqi-value": data.aqi,
+          "co2-value": data.co2_ppm,
+          "temp-value": data.temperature_c,
+          "humidity-value": data.humidity_pct,
+        };
+
+        Object.entries(sensors).forEach(([id, value]) => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.textContent =
+              value !== null && value !== undefined ? value : "--";
+            log(`Updated ${id}: ${value}`);
+          } else {
+            log(`Element not found: ${id}`);
+          }
+        });
+
+        // Show the display
+        const display = document.getElementById("gas-sensor-display");
+        if (display) {
+          display.classList.remove("hidden");
+          log("Display shown successfully");
+        } else {
+          log("ERROR: Could not find gas-sensor-display element");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "info": {
+    "name": "SwasthYA Flow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Single Reading",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"timestamp\": \"2025-08-27T00:00:00\",\n    \"flow_ml\": 25,\n    \"user_email\": \"user@example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/data/add_reading",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["data", "add_reading"]
+        }
+      }
+    },
+    {
+      "name": "Add Batch Readings",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"readings\": [\n        {\"timestamp\": \"2025-08-27T00:00:00\", \"flow_ml\": 25, \"user_email\": \"user@example.com\"},\n        {\"timestamp\": \"2025-08-28T00:00:00\", \"flow_ml\": 30, \"user_email\": \"user@example.com\"}\n    ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/data/add_batch",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["data", "add_batch"]
+        }
+      }
+    },
+    {
+      "name": "List All Readings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/data/list_readings",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["data", "list_readings"]
+        }
+      }
+    }
+  ]
+}
