@@ -9,4 +9,3 @@ pandas
 joblib
 requests
 aiohttp
-jjinja2
